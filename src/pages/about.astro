@@ -3,7 +3,7 @@
 import '../styles/global.css';
 
 import Navigation from '../components/Navigation.astro';
-
+import Footer from '../components/Footer.astro';
 const pageTitle = "About me";
 
 const identity = {
@@ -76,6 +76,6 @@ const textCase = "uppercase";
 
         {goal === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p>}
 
-
+        <Footer />
       </body>
 </html>
