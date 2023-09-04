@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const allPosts = await Astro.glob("../posts/*.md");
+{/*  allPosts.map((post) => post.frontmatter.tags): Questa parte del codice utilizza il metodo map per estrarre la proprietà tags da ciascun oggetto post nell'array allPosts. L'array risultante conterrà un sottoarray di tag per ciascun post.
+.flat(): Il metodo flat() viene utilizzato per "appiattire" l'array di array ottenuto dalla mappatura precedente. Questo significa che se hai un array di array di tag, lo trasformerà in un unico array piatto di tag senza struttura nidificata.
+new Set(...): Il costruttore Set viene utilizzato per creare un oggetto Set, che è una collezione di valori unici. In questo caso, stiamo passando l'array piatto dei tag come argomento a new Set(...). Questo creerà un oggetto Set contenente solo i tag unici, eliminando eventuali duplicati.
+[... ]: L'operatore di spread ([... ]) viene utilizzato per convertire l'oggetto Set risultante in un array. Questo è fatto perché potrebbe essere più comodo lavorare con un array piuttosto che con un oggetto Set in alcune situazioni. */}
+const tags = [...new Set(allPosts.map((post) => post.frontmatter.tags).flat())];
+const pageTitle = "Tag Index";
+---
+
+<style>
+   
+  }
+</style>
+
+
+<BaseLayout pageTitle={pageTitle}>
+
+    <!-- {tags.map((tag) => (...))}: Questo è un esempio di utilizzo di JavaScript all'interno di JSX (JavaScript XML). La funzione map viene utilizzata per creare una serie di elementi JSX basati su ciascun tag nell'array tags. Per ogni tag nell'array, verrà creato un elemento <p> che contiene un collegamento <a>. -->
+     <!-- <p><a href={/tags/${tag}}>{tag}</a> </p>: Per ogni tag nell'array tags, stai creando un elemento <p> contenente un collegamento <a>. L'attributo href del collegamento viene generato dinamicamente in base al tag specifico, quindi ogni collegamento punterà a una pagina diversa basata sul tag. Il testo del collegamento ({tag}) è il testo visibile del collegamento, che sarà il nome del tag stesso. -->
+  
+   <ul>
+    <div class="tags">
+    {tags.map((tag) => (
+        <p class="tags"><a href={`/tags/${tag}`}>{tag}</a> </p>
+    ))}</div>
+  </ul>
+</BaseLayout>
